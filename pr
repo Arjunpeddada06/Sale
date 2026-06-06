@@ -1,0 +1,17 @@
+import pandas as pd
+
+df = pd.read_csv("sales_data.csv")
+
+# Create Revenue column
+df["Revenue"] = df["Quantity"] * df["Price"]
+
+print("Total Revenue:", df["Revenue"].sum())
+
+print("\nRevenue by Category:")
+print(df.groupby("Category")["Revenue"].sum())
+
+print("\nRevenue by Region:")
+print(df.groupby("Region")["Revenue"].sum())
+
+print("\nTop Selling Product:")
+print(df.groupby("Product")["Quantity"].sum().sort_values(ascending=False).head(1))
